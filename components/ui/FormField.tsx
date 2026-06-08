@@ -31,3 +31,9 @@ export const inputClassName =
 export const selectClassName = inputClassName;
 
 export const textareaClassName = `${inputClassName} min-h-[100px] resize-y`;
+
+export const checkboxClassName =
+  "h-4 w-4 rounded border-charcoal-600 bg-charcoal-800 text-gold focus:ring-gold focus:ring-offset-charcoal-900";
+
+export const fileClassName =
+  "w-full rounded-lg border border-charcoal-600 bg-charcoal-800/80 px-3 py-2 text-sm text-charcoal-300 file:mr-3 file:rounded-md file:border-0 file:bg-gold file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-charcoal-900 hover:file:bg-gold-light";

@@ -8,38 +8,76 @@ import {
   type StartupRegistration,
 } from "@/lib/types/startup";
 import { Step1BasicInfo } from "./steps/Step1BasicInfo";
-import { Step2ProductMarket } from "./steps/Step2ProductMarket";
-import { Step3Team } from "./steps/Step3Team";
-import { Step4Financials } from "./steps/Step4Financials";
-import { Step5Pitch } from "./steps/Step5Pitch";
-import { Step6Review } from "./steps/Step6Review";
+import { Step2ExecutiveSummary } from "./steps/Step2ExecutiveSummary";
+import { Step3BusinessModel } from "./steps/Step3BusinessModel";
+import { Step4ProductService } from "./steps/Step4ProductService";
+import { Step5InvestorMetrics } from "./steps/Step5InvestorMetrics";
+import { Step6Fundraising } from "./steps/Step6Fundraising";
+import { Step7TeamGovernance } from "./steps/Step7TeamGovernance";
+import { Step8RankingScore } from "./steps/Step8RankingScore";
+import { Step9Review } from "./steps/Step9Review";
 
 const TOTAL_STEPS = REGISTRATION_STEPS.length;
 
 function validateStep(step: number, data: StartupRegistration): string | null {
   switch (step) {
     case 1:
-      if (!data.name.trim()) return "Informe o nome da startup.";
-      if (!data.tagline.trim()) return "Informe a tagline.";
-      if (!data.city.trim() || !data.state.trim())
-        return "Informe cidade e estado.";
+      if (!data.legalName.trim()) return "Informe a razão social.";
+      if (!data.tradeName.trim()) return "Informe o nome fantasia.";
+      if (!data.cnpj.trim()) return "Informe o CNPJ.";
+      if (!data.country.trim() || !data.state.trim() || !data.city.trim())
+        return "Informe país, estado e cidade.";
+      if (!data.foundedYear.trim()) return "Informe o ano de fundação.";
       return null;
     case 2:
-      if (!data.description.trim()) return "Descreva a startup.";
+      if (!data.slogan.trim()) return "Informe o slogan da empresa.";
       if (!data.problem.trim() || !data.solution.trim())
         return "Preencha problema e solução.";
+      if (!data.competitiveAdvantages.trim())
+        return "Informe os diferenciais competitivos.";
+      if (!data.targetMarket.trim()) return "Informe o mercado alvo.";
+      if (!data.companyStage.trim()) return "Informe o estágio da empresa.";
       return null;
     case 3:
-      if (!data.founders.trim()) return "Informe os fundadores.";
+      if (!data.segment.trim() || !data.subsegment.trim())
+        return "Informe segmento e subsegmento.";
       return null;
     case 4:
-      if (!data.raisingAmount.trim())
-        return "Informe o valor buscado na rodada.";
+      if (!data.productName.trim() || !data.productDescription.trim())
+        return "Informe nome e descrição do produto.";
+      if (!data.productStatus.trim()) return "Informe o status do produto.";
       return null;
     case 5:
-      if (!data.traction.trim() || !data.differentiator.trim())
-        return "Preencha tração e diferencial.";
+      if (!data.traction.trim()) return "Informe a tração.";
+      if (!data.mrr.trim()) return "Informe o MRR.";
       return null;
+    case 6:
+      if (!data.isRaising) return "Informe se está captando recursos.";
+      if (!data.roundObjective.trim())
+        return "Informe o objetivo da rodada.";
+      if (data.isRaising === "yes" && !data.amountSought.trim())
+        return "Informe o valor procurado.";
+      return null;
+    case 7: {
+      const hasFounder = data.founders.some((f) => f.name.trim() && f.role.trim());
+      if (!hasFounder) return "Informe ao menos um fundador com nome e cargo.";
+      if (data.governance.length === 0)
+        return "Selecione ao menos uma opção de governança.";
+      return null;
+    }
+    case 8: {
+      const { annualRevenue, revenueWeight, yearlyGrowth, marketShare } =
+        data.ranking;
+      if (
+        !annualRevenue.trim() ||
+        !revenueWeight.trim() ||
+        !yearlyGrowth.trim() ||
+        !marketShare.trim()
+      ) {
+        return "Preencha todos os critérios numéricos do Capital Match Score.";
+      }
+      return null;
+    }
     default:
       return null;
   }
@@ -118,9 +156,9 @@ export function RegistrationWizard() {
           Cadastro enviado com sucesso!
         </h3>
         <p className="mt-2 text-sm text-charcoal-400">
-          Sua startup será analisada e poderá entrar no ranking em breve.
-          Quando o Firebase estiver ativo, os dados serão persistidos
-          automaticamente.
+          Sua startup será analisada e o Capital Match Score será calculado
+          após a avaliação dos critérios pela equipe. Quando o Firebase estiver
+          ativo, os dados serão persistidos automaticamente.
         </p>
         <button
           type="button"
@@ -137,7 +175,6 @@ export function RegistrationWizard() {
 
   return (
     <div>
-      {/* Indicador de etapas */}
       <ol className="mb-8 flex flex-wrap gap-2" aria-label="Etapas do cadastro">
         {REGISTRATION_STEPS.map((s) => {
           const done = s.id < step;
@@ -181,11 +218,20 @@ export function RegistrationWizard() {
 
       <div className="mb-8">
         {step === 1 && <Step1BasicInfo data={data} onChange={onChange} />}
-        {step === 2 && <Step2ProductMarket data={data} onChange={onChange} />}
-        {step === 3 && <Step3Team data={data} onChange={onChange} />}
-        {step === 4 && <Step4Financials data={data} onChange={onChange} />}
-        {step === 5 && <Step5Pitch data={data} onChange={onChange} />}
-        {step === 6 && <Step6Review data={data} />}
+        {step === 2 && (
+          <Step2ExecutiveSummary data={data} onChange={onChange} />
+        )}
+        {step === 3 && <Step3BusinessModel data={data} onChange={onChange} />}
+        {step === 4 && <Step4ProductService data={data} onChange={onChange} />}
+        {step === 5 && (
+          <Step5InvestorMetrics data={data} onChange={onChange} />
+        )}
+        {step === 6 && <Step6Fundraising data={data} onChange={onChange} />}
+        {step === 7 && (
+          <Step7TeamGovernance data={data} onChange={onChange} />
+        )}
+        {step === 8 && <Step8RankingScore data={data} onChange={onChange} />}
+        {step === 9 && <Step9Review data={data} />}
       </div>
 
       {error && (

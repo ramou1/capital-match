@@ -1,65 +1,135 @@
-/** Estágio de maturidade da startup */
-export type StartupStage =
-  | "idea"
-  | "mvp"
-  | "early_revenue"
-  | "growth"
-  | "scale";
-
-/** Setor de atuação */
-export type StartupSector =
+/** Área de atuação da empresa */
+export type BusinessArea =
+  | "construtech"
   | "fintech"
   | "healthtech"
   | "edtech"
-  | "agtech"
-  | "saas"
-  | "marketplace"
-  | "cleantech"
-  | "other";
+  | "agrotech"
+  | "logtech"
+  | "retailtech";
+
+/** Opções de governança (múltipla escolha) */
+export type GovernanceOption =
+  | "holding"
+  | "conselho"
+  | "auditoria"
+  | "compliance"
+  | "esg";
+
+export interface Founder {
+  name: string;
+  role: string;
+  linkedin: string;
+  experience: string;
+  photo: string;
+}
+
+/** Critérios numéricos do Capital Match Score (preenchidos pela startup) */
+export interface RankingCriteria {
+  annualRevenue: string;
+  revenueWeight: string;
+  yearlyGrowth: string;
+  marketShare: string;
+}
 
 /**
- * Formulário completo de cadastro (6 etapas).
+ * Formulário completo de cadastro (7 etapas + ranking).
  * Estrutura alinhada ao documento Firestore futuro.
  */
 export interface StartupRegistration {
-  // Etapa 1 — Informações básicas
-  name: string;
-  tagline: string;
-  sector: StartupSector;
-  stage: StartupStage;
-  foundedYear: string;
-  city: string;
+  // Etapa 1 — Dados Básicos da Empresa
+  legalName: string;
+  tradeName: string;
+  cnpj: string;
+  country: string;
   state: string;
+  city: string;
+  foundedYear: string;
+  businessArea: BusinessArea;
   website: string;
+  socialMedia: string;
+  logo: string;
+  institutionalVideo: string;
+  pitchDeck: string;
 
-  // Etapa 2 — Produto e mercado
-  description: string;
+  // Etapa 2 — Resumo Executivo (Pitch)
+  slogan: string;
   problem: string;
   solution: string;
+  competitiveAdvantages: string;
   targetMarket: string;
-  competitors: string;
+  companyStage: string;
 
-  // Etapa 3 — Equipe
-  founders: string;
-  teamSize: string;
-  keyHires: string;
-  advisors: string;
+  // Etapa 3 — Modelo de Negócio
+  segment: string;
+  subsegment: string;
+  b2b: string;
+  b2c: string;
+  b2b2c: string;
+  saas: string;
+  marketplace: string;
+  franchise: string;
+  subscription: string;
+  ecommerce: string;
+  transactionCommission: string;
 
-  // Etapa 4 — Finanças
-  monthlyRevenue: string;
-  mrrGrowth: string;
-  burnRate: string;
-  runwayMonths: string;
-  raisingAmount: string;
-  valuation: string;
-  previousFunding: string;
+  // Etapa 4 — Produto ou Serviço
+  productType: string;
+  productName: string;
+  productCategory: string;
+  productDescription: string;
+  productPhotos: string;
+  demoVideo: string;
+  productStatus: string;
 
-  // Etapa 5 — Pitch e tração
+  // Etapa 5 — Indicadores para Investidores
   traction: string;
-  differentiator: string;
-  pitchVideoUrl: string;
-  deckUrl: string;
-  linkedinUrl: string;
+  activeClients: string;
+  activeUsers: string;
+  monthlyGrowth: string;
+  mrr: string;
+  arr: string;
+  ebitda: string;
+  cac: string;
+  ltv: string;
+  churn: string;
+  market: string;
+  tam: string;
+  sam: string;
+  som: string;
+  expansion: string;
+  statesServed: string;
+  countriesServed: string;
+  franchises: string;
+  branches: string;
+  projects: string;
+
+  // Etapa 6 — Captação de Recursos
+  isRaising: "yes" | "no" | "";
+  roundObjective: string;
+  preSeed: string;
+  seed: string;
+  seriesA: string;
+  seriesB: string;
+  growth: string;
+  ventureDebt: string;
+  fundraisingInfo: string;
+  amountSought: string;
+  equityOffered: string;
+  currentValuation: string;
+  projectedValuation: string;
+  roundDeadline: string;
+
+  // Etapa 7 — Time e Governança
+  founders: Founder[];
+  board: string;
+  advisors: string;
+  mentors: string;
+  currentInvestors: string;
+  governance: GovernanceOption[];
+
+  // Capital Match Score — critérios numéricos
+  ranking: RankingCriteria;
 
   // Metadados (preenchidos pelo backend)
   createdAt?: string;
@@ -70,45 +140,109 @@ export interface StartupRegistration {
 export interface StartupRankingEntry {
   id: string;
   name: string;
-  tagline: string;
-  sector: StartupSector;
-  stage: StartupStage;
+  slogan: string;
+  businessArea: BusinessArea;
+  companyStage: string;
   city: string;
   state: string;
-  score: number;
-  raisingAmount: string;
-  monthlyRevenue: string;
+  capitalMatchScore: number;
+  amountSought: string;
+  mrr: string;
   rank: number;
 }
 
-export const EMPTY_REGISTRATION: StartupRegistration = {
+export const EMPTY_FOUNDER: Founder = {
   name: "",
-  tagline: "",
-  sector: "saas",
-  stage: "mvp",
-  foundedYear: "",
-  city: "",
+  role: "",
+  linkedin: "",
+  experience: "",
+  photo: "",
+};
+
+export const EMPTY_RANKING: RankingCriteria = {
+  annualRevenue: "",
+  revenueWeight: "",
+  yearlyGrowth: "",
+  marketShare: "",
+};
+
+export const EMPTY_REGISTRATION: StartupRegistration = {
+  legalName: "",
+  tradeName: "",
+  cnpj: "",
+  country: "Brasil",
   state: "",
+  city: "",
+  foundedYear: "",
+  businessArea: "fintech",
   website: "",
-  description: "",
+  socialMedia: "",
+  logo: "",
+  institutionalVideo: "",
+  pitchDeck: "",
+  slogan: "",
   problem: "",
   solution: "",
+  competitiveAdvantages: "",
   targetMarket: "",
-  competitors: "",
-  founders: "",
-  teamSize: "",
-  keyHires: "",
-  advisors: "",
-  monthlyRevenue: "",
-  mrrGrowth: "",
-  burnRate: "",
-  runwayMonths: "",
-  raisingAmount: "",
-  valuation: "",
-  previousFunding: "",
+  companyStage: "",
+  segment: "",
+  subsegment: "",
+  b2b: "",
+  b2c: "",
+  b2b2c: "",
+  saas: "",
+  marketplace: "",
+  franchise: "",
+  subscription: "",
+  ecommerce: "",
+  transactionCommission: "",
+  productType: "",
+  productName: "",
+  productCategory: "",
+  productDescription: "",
+  productPhotos: "",
+  demoVideo: "",
+  productStatus: "",
   traction: "",
-  differentiator: "",
-  pitchVideoUrl: "",
-  deckUrl: "",
-  linkedinUrl: "",
+  activeClients: "",
+  activeUsers: "",
+  monthlyGrowth: "",
+  mrr: "",
+  arr: "",
+  ebitda: "",
+  cac: "",
+  ltv: "",
+  churn: "",
+  market: "",
+  tam: "",
+  sam: "",
+  som: "",
+  expansion: "",
+  statesServed: "",
+  countriesServed: "",
+  franchises: "",
+  branches: "",
+  projects: "",
+  isRaising: "",
+  roundObjective: "",
+  preSeed: "",
+  seed: "",
+  seriesA: "",
+  seriesB: "",
+  growth: "",
+  ventureDebt: "",
+  fundraisingInfo: "",
+  amountSought: "",
+  equityOffered: "",
+  currentValuation: "",
+  projectedValuation: "",
+  roundDeadline: "",
+  founders: [{ ...EMPTY_FOUNDER }],
+  board: "",
+  advisors: "",
+  mentors: "",
+  currentInvestors: "",
+  governance: [],
+  ranking: { ...EMPTY_RANKING },
 };

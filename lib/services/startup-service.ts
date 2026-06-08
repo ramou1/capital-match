@@ -21,7 +21,7 @@ const mockService: StartupService = {
 
   async submitRegistration(data: StartupRegistration) {
     // Simula persistência — substituir por Firestore collection "startups"
-    console.info("[Capital Match] Cadastro recebido (mock):", data.name);
+    console.info("[Capital Match] Cadastro recebido (mock):", data.tradeName);
     await new Promise((r) => setTimeout(r, 800));
     return { id: `mock-${Date.now()}` };
   },
