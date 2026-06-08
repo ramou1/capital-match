@@ -122,7 +122,7 @@ export function Step1BasicInfo({ data, onChange }: StepProps) {
           }
         />
         {data.logo && (
-          <p className="text-xs text-charcoal-400">Arquivo: {data.logo}</p>
+          <p className="text-xs text-navy-400">Arquivo: {data.logo}</p>
         )}
       </FormField>
       <FormField
@@ -154,7 +154,7 @@ export function Step1BasicInfo({ data, onChange }: StepProps) {
             }
           />
           {data.pitchDeck && (
-            <p className="text-xs text-charcoal-400">
+            <p className="text-xs text-navy-400">
               Arquivo: {data.pitchDeck}
             </p>
           )}

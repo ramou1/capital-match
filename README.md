@@ -1,6 +1,6 @@
 # Capital Match
 
-Plataforma de página única para startups cadastrarem suas informações e serem descobertas por investidores. Interface em **cinza escuro** e **dourado**, com ranking público (Capital Match Score) e cadastro em wizard de 7 etapas + score + revisão.
+Plataforma de página única para startups cadastrarem suas informações e serem descobertas por investidores. Interface em **azul marinho** e **dourado**, com ranking público (Capital Match Score) e cadastro em wizard de 7 etapas + score + revisão.
 
 ## Funcionalidades
 
@@ -101,7 +101,16 @@ Quando `NEXT_PUBLIC_FIREBASE_PROJECT_ID` e `NEXT_PUBLIC_FIREBASE_API_KEY` estive
 
 ## Paleta de cores
 
-Tokens customizados em `app/globals.css` — escala `charcoal-*` (cinza neutro escuro, sem subtom azul) e `gold` / `gold-light` para destaques.
+Tokens customizados em `app/globals.css`:
+
+| Cor | Hex |
+|-----|-----|
+| Azul marinho (claro) | `#161c2c` |
+| Azul marinho (escuro) | `#02040b` |
+| Dourado (claro) | `#efcf74` |
+| Dourado (escuro) | `#3a2612` |
+
+Escala `navy-*` para fundos e superfícies, `gold` / `gold-light` / `gold-dark` para destaques e acentos.
 
 ## Licença
 

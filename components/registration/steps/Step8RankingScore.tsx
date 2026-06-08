@@ -16,7 +16,7 @@ export function Step8RankingScore({ data, onChange }: StepProps) {
 
   return (
     <div className="flex flex-col gap-6">
-      <p className="text-sm text-charcoal-400">
+      <p className="text-sm text-navy-400">
         Preencha os critérios numéricos para calcular o{" "}
         <strong className="text-gold">Capital Match Score</strong>. Os demais
         critérios serão avaliados pela equipe da plataforma após o envio do
@@ -83,7 +83,7 @@ export function Step8RankingScore({ data, onChange }: StepProps) {
         </FormField>
       </div>
 
-      <div className="rounded-lg border border-charcoal-700 bg-charcoal-800/30 p-4">
+      <div className="rounded-lg border border-navy-700 bg-navy-800/30 p-4">
         <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-gold">
           Critérios avaliados pela equipe
         </h4>
@@ -91,14 +91,14 @@ export function Step8RankingScore({ data, onChange }: StepProps) {
           {MANUAL_RANKING_CRITERIA.map((criterion) => (
             <li
               key={criterion}
-              className="flex items-center gap-2 text-sm text-charcoal-300"
+              className="flex items-center gap-2 text-sm text-navy-300"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-gold" />
               {criterion}
             </li>
           ))}
         </ul>
-        <p className="mt-3 text-xs text-charcoal-500">
+        <p className="mt-3 text-xs text-navy-500">
           Inovação, Governança, Tração, Internacionalização, Equipe e Captable
           serão analisados manualmente e incorporados ao score final.
         </p>

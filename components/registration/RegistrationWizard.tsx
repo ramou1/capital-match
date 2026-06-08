@@ -155,7 +155,7 @@ export function RegistrationWizard() {
         <h3 className="text-xl font-semibold text-white">
           Cadastro enviado com sucesso!
         </h3>
-        <p className="mt-2 text-sm text-charcoal-400">
+        <p className="mt-2 text-sm text-navy-400">
           Sua startup será analisada e o Capital Match Score será calculado
           após a avaliação dos critérios pela equipe. Quando o Firebase estiver
           ativo, os dados serão persistidos automaticamente.
@@ -163,7 +163,7 @@ export function RegistrationWizard() {
         <button
           type="button"
           onClick={resetForm}
-          className="mt-6 rounded-lg bg-gold px-6 py-2.5 text-sm font-semibold text-charcoal-900 hover:bg-gold-light transition-colors"
+          className="mt-6 rounded-lg bg-gold px-6 py-2.5 text-sm font-semibold text-navy-950 hover:bg-gold-light transition-colors"
         >
           Cadastrar outra startup
         </button>
@@ -184,19 +184,19 @@ export function RegistrationWizard() {
               key={s.id}
               className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                 current
-                  ? "bg-gold text-charcoal-900"
+                  ? "bg-gold text-navy-950"
                   : done
-                    ? "bg-charcoal-700 text-gold"
-                    : "bg-charcoal-800 text-charcoal-500"
+                    ? "bg-navy-700 text-gold"
+                    : "bg-navy-800 text-navy-500"
               }`}
             >
               <span
                 className={`flex h-5 w-5 items-center justify-center rounded-full text-[10px] ${
                   current
-                    ? "bg-charcoal-900/20"
+                    ? "bg-navy-900/20"
                     : done
                       ? "bg-gold/20"
-                      : "bg-charcoal-700"
+                      : "bg-navy-700"
                 }`}
               >
                 {done ? "✓" : s.id}
@@ -243,12 +243,12 @@ export function RegistrationWizard() {
         </p>
       )}
 
-      <div className="flex flex-wrap gap-3 border-t border-charcoal-700 pt-6">
+      <div className="flex flex-wrap gap-3 border-t border-navy-700 pt-6">
         {step > 1 && (
           <button
             type="button"
             onClick={goBack}
-            className="rounded-lg border border-charcoal-600 px-5 py-2.5 text-sm font-medium text-charcoal-300 hover:border-charcoal-500 hover:text-white transition-colors"
+            className="rounded-lg border border-navy-600 px-5 py-2.5 text-sm font-medium text-navy-300 hover:border-navy-500 hover:text-white transition-colors"
           >
             Voltar
           </button>
@@ -258,7 +258,7 @@ export function RegistrationWizard() {
           <button
             type="button"
             onClick={goNext}
-            className="rounded-lg bg-gold px-6 py-2.5 text-sm font-semibold text-charcoal-900 hover:bg-gold-light transition-colors"
+            className="rounded-lg bg-gold px-6 py-2.5 text-sm font-semibold text-navy-950 hover:bg-gold-light transition-colors"
           >
             Continuar
           </button>
@@ -267,7 +267,7 @@ export function RegistrationWizard() {
             type="button"
             onClick={handleSubmit}
             disabled={submitting}
-            className="rounded-lg bg-gold px-6 py-2.5 text-sm font-semibold text-charcoal-900 hover:bg-gold-light disabled:opacity-60 transition-colors"
+            className="rounded-lg bg-gold px-6 py-2.5 text-sm font-semibold text-navy-950 hover:bg-gold-light disabled:opacity-60 transition-colors"
           >
             {submitting ? "Enviando…" : "Publicar startup"}
           </button>

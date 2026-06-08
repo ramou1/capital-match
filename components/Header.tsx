@@ -16,7 +16,7 @@ export function Header() {
     <header
       className={`sticky top-0 z-50 transition-[background-color,backdrop-filter] duration-300 ${
         scrolled
-          ? "bg-charcoal-900/75 backdrop-blur-md"
+          ? "bg-navy-900/75 backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
@@ -32,7 +32,7 @@ export function Header() {
             <h1 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
               Capital Match
             </h1>
-            <p className="text-xs text-charcoal-400 sm:text-sm">
+            <p className="text-xs text-navy-400 sm:text-sm">
               Conectando startups a investidores
             </p>
           </div>

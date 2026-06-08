@@ -75,7 +75,7 @@ export function Step4ProductService({ data, onChange }: StepProps) {
           }}
         />
         {data.productPhotos && (
-          <p className="text-xs text-charcoal-400">
+          <p className="text-xs text-navy-400">
             Arquivos: {data.productPhotos}
           </p>
         )}

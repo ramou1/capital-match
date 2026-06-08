@@ -38,7 +38,7 @@ function FounderBlock({
   const prefix = `founder-${index}`;
 
   return (
-    <div className="rounded-lg border border-charcoal-700 bg-charcoal-800/30 p-4">
+    <div className="rounded-lg border border-navy-700 bg-navy-800/30 p-4">
       <div className="mb-4 flex items-center justify-between">
         <h4 className="text-sm font-semibold text-gold">
           Fundador {index + 1}
@@ -47,7 +47,7 @@ function FounderBlock({
           <button
             type="button"
             onClick={onRemove}
-            className="text-xs text-charcoal-400 hover:text-red-300 transition-colors"
+            className="text-xs text-navy-400 hover:text-red-300 transition-colors"
           >
             Remover
           </button>
@@ -90,7 +90,7 @@ function FounderBlock({
             }
           />
           {founder.photo && (
-            <p className="text-xs text-charcoal-400">Arquivo: {founder.photo}</p>
+            <p className="text-xs text-navy-400">Arquivo: {founder.photo}</p>
           )}
         </FormField>
         <div className="sm:col-span-2">
@@ -153,7 +153,7 @@ export function Step7TeamGovernance({ data, onChange }: StepProps) {
         <button
           type="button"
           onClick={addFounder}
-          className="self-start rounded-lg border border-dashed border-charcoal-600 px-4 py-2 text-sm text-charcoal-300 hover:border-gold hover:text-gold transition-colors"
+          className="self-start rounded-lg border border-dashed border-navy-600 px-4 py-2 text-sm text-navy-300 hover:border-gold hover:text-gold transition-colors"
         >
           + Adicionar fundador
         </button>
@@ -208,7 +208,7 @@ export function Step7TeamGovernance({ data, onChange }: StepProps) {
             ([key, label]) => (
               <label
                 key={key}
-                className="flex cursor-pointer items-center gap-2 text-sm text-charcoal-200"
+                className="flex cursor-pointer items-center gap-2 text-sm text-navy-200"
               >
                 <input
                   type="checkbox"

@@ -15,7 +15,7 @@ function ReviewBlock({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-lg border border-charcoal-700 bg-charcoal-800/30 p-4">
+    <div className="rounded-lg border border-navy-700 bg-navy-800/30 p-4">
       <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-gold">
         {title}
       </h4>
@@ -28,8 +28,8 @@ function ReviewItem({ label, value }: { label: string; value: string }) {
   if (!value?.trim()) return null;
   return (
     <div className="grid gap-0.5 sm:grid-cols-[160px_1fr]">
-      <dt className="text-charcoal-500">{label}</dt>
-      <dd className="text-charcoal-200 whitespace-pre-wrap">{value}</dd>
+      <dt className="text-navy-500">{label}</dt>
+      <dd className="text-navy-200 whitespace-pre-wrap">{value}</dd>
     </div>
   );
 }
@@ -46,7 +46,7 @@ export function Step9Review({ data }: StepProps) {
 
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-sm text-charcoal-400">
+      <p className="text-sm text-navy-400">
         Revise as informações antes de publicar. Após o envio, sua startup
         será analisada e poderá entrar no ranking com o Capital Match Score.
       </p>
