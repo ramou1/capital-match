@@ -4,7 +4,7 @@ Plataforma de página única para startups cadastrarem suas informações e sere
 
 ## Funcionalidades
 
-- **Ranking** — lista de startups em destaque com Capital Match Score, captação, MRR e metadados (dados mock por enquanto)
+- **Ranking** — lista de startups em destaque (lida do Firestore) com Capital Match Score, captação, MRR e metadados, ordenada pelo score; cada item tem botão de **excluir com confirmação**
 - **Cadastro** — formulário em 9 passos do wizard:
   1. **Dados Básicos da Empresa** — razão social, nome fantasia, CNPJ, localização, área de atuação, site, redes, logo, vídeo e pitch deck
   2. **Resumo Executivo (Pitch)** — slogan, problema, solução, diferenciais, mercado alvo e estágio
@@ -28,7 +28,16 @@ Critérios preenchidos pela startup no cadastro:
 | Crescimento por Ano | Numérico (%) |
 | Mercado / Marketshare | Numérico (%) |
 
-Critérios avaliados manualmente pela equipe após o envio:
+O score (0–100) é calculado em `lib/scoring.ts` a partir dos critérios numéricos, com os seguintes pesos:
+
+| Critério | Peso máximo |
+|----------|-------------|
+| Receita Anual (escala logarítmica) | 40 pts |
+| Crescimento por Ano | 30 pts |
+| Mercado / Marketshare | 15 pts |
+| Valor da Receita | 15 pts |
+
+Critérios avaliados manualmente pela equipe após o envio (ainda não entram no cálculo automático):
 
 - Inovação
 - Governança
@@ -47,6 +56,7 @@ Construtech, Fintech, Healthtech, Edtech, Agrotech, Logtech e Retailtech.
 - React 19
 - TypeScript
 - Tailwind CSS 4
+- [Firebase](https://firebase.google.com) (Firestore)
 
 ## Como rodar
 
@@ -75,18 +85,29 @@ components/
   ui/                   # campos de formulário reutilizáveis
 lib/
   types/                # tipos TypeScript (StartupRegistration, RankingCriteria, etc.)
-  data/                 # dados mock
-  services/             # camada de acesso a dados (mock → Firebase)
-  firebase/             # configuração Firebase (futuro)
+  data/                 # dados mock (fallback do ranking)
+  services/             # camada de acesso a dados (mock ↔ Firebase)
+  scoring.ts            # cálculo do Capital Match Score
+  firebase/             # configuração e inicialização do Firebase
+scripts/
+  seed-firestore.mjs    # popula a coleção "startups" com exemplos
 ```
 
-## Firebase (futuro)
+## Firebase
 
-A arquitetura já separa tipos, serviços e configuração para integrar o Firebase depois. Hoje tudo passa por `getStartupService()` em `lib/services/startup-service.ts`, que usa mock.
+A integração com o Firestore já está ativa. Tudo passa por `getStartupService()` em `lib/services/startup-service.ts`, que:
 
-1. Instale o SDK Firebase quando for integrar
-2. Implemente `firebaseService` em `startup-service.ts`
-3. Crie `.env.local` com as variáveis:
+- **Salva** o cadastro na coleção `startups` (`submitRegistration`)
+- **Lista** as startups para o ranking, calculando o score e ordenando (`getRanking`)
+- **Exclui** uma startup (`deleteStartup`)
+
+A troca entre mock e Firestore é automática: se as variáveis `NEXT_PUBLIC_FIREBASE_*` estiverem definidas, usa o Firestore; caso contrário, usa dados mock.
+
+### Configuração
+
+1. Crie um projeto no [Firebase Console](https://console.firebase.google.com) e um app Web
+2. Ative o **Firestore Database**
+3. Copie `.env.local.example` para `.env.local` e preencha com as credenciais do app Web:
 
 ```env
 NEXT_PUBLIC_FIREBASE_API_KEY=
@@ -97,7 +118,17 @@ NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
 NEXT_PUBLIC_FIREBASE_APP_ID=
 ```
 
-Quando `NEXT_PUBLIC_FIREBASE_PROJECT_ID` e `NEXT_PUBLIC_FIREBASE_API_KEY` estiverem definidos, o app detecta a configuração via `lib/firebase/config.ts` (implementação Firestore ainda pendente).
+4. Reinicie o `npm run dev`
+
+### Popular dados de exemplo
+
+```bash
+node scripts/seed-firestore.mjs
+```
+
+O script lê as credenciais de `.env.local` e insere algumas startups de exemplo na coleção `startups`.
+
+> **Segurança:** as regras do Firestore devem ser revisadas antes de ir para produção. Em modo de teste, a coleção fica aberta para leitura/escrita/exclusão.
 
 ## Paleta de cores
 
