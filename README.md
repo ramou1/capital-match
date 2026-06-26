@@ -85,8 +85,7 @@ components/
   ui/                   # campos de formulário reutilizáveis
 lib/
   types/                # tipos TypeScript (StartupRegistration, RankingCriteria, etc.)
-  data/                 # dados mock (fallback do ranking)
-  services/             # camada de acesso a dados (mock ↔ Firebase)
+  services/             # camada de acesso a dados (Firestore)
   scoring.ts            # cálculo do Capital Match Score
   firebase/             # configuração e inicialização do Firebase
 scripts/
@@ -95,30 +94,13 @@ scripts/
 
 ## Firebase
 
-A integração com o Firestore já está ativa. Tudo passa por `getStartupService()` em `lib/services/startup-service.ts`, que:
+A persistência usa o **Firestore** e já está configurada. Tudo passa por `getStartupService()` em `lib/services/startup-service.ts`, que:
 
 - **Salva** o cadastro na coleção `startups` (`submitRegistration`)
 - **Lista** as startups para o ranking, calculando o score e ordenando (`getRanking`)
 - **Exclui** uma startup (`deleteStartup`)
 
-A troca entre mock e Firestore é automática: se as variáveis `NEXT_PUBLIC_FIREBASE_*` estiverem definidas, usa o Firestore; caso contrário, usa dados mock.
-
-### Configuração
-
-1. Crie um projeto no [Firebase Console](https://console.firebase.google.com) e um app Web
-2. Ative o **Firestore Database**
-3. Copie `.env.local.example` para `.env.local` e preencha com as credenciais do app Web:
-
-```env
-NEXT_PUBLIC_FIREBASE_API_KEY=
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
-NEXT_PUBLIC_FIREBASE_APP_ID=
-```
-
-4. Reinicie o `npm run dev`
+As credenciais ficam em `.env.local` (variáveis `NEXT_PUBLIC_FIREBASE_*`).
 
 ### Popular dados de exemplo
 

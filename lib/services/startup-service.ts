@@ -1,5 +1,3 @@
-import { MOCK_RANKING } from "@/lib/data/mock-startups";
-import { isFirebaseConfigured } from "@/lib/firebase/config";
 import { computeCapitalMatchScore } from "@/lib/scoring";
 import type {
   StartupRankingEntry,
@@ -7,9 +5,7 @@ import type {
 } from "@/lib/types/startup";
 
 /**
- * Camada de acesso a dados de startups.
- * Usa mock enquanto o Firebase não estiver configurado;
- * ao preencher as variáveis NEXT_PUBLIC_FIREBASE_* passa a usar o Firestore.
+ * Camada de acesso a dados de startups, persistidos no Firestore.
  */
 export interface StartupService {
   getRanking(): Promise<StartupRankingEntry[]>;
@@ -18,23 +14,6 @@ export interface StartupService {
 }
 
 const STARTUPS_COLLECTION = "startups";
-
-const mockService: StartupService = {
-  async getRanking() {
-    return [...MOCK_RANKING].sort((a, b) => a.rank - b.rank);
-  },
-
-  async submitRegistration(data: StartupRegistration) {
-    console.info("[Capital Match] Cadastro recebido (mock):", data.tradeName);
-    await new Promise((r) => setTimeout(r, 800));
-    return { id: `mock-${Date.now()}` };
-  },
-
-  async deleteStartup(id: string) {
-    console.info("[Capital Match] Exclusão (mock):", id);
-    await new Promise((r) => setTimeout(r, 300));
-  },
-};
 
 function toRankingEntry(
   id: string,
@@ -61,10 +40,6 @@ const firebaseService: StartupService = {
 
     const db = getDb();
     const snapshot = await getDocs(collection(db, STARTUPS_COLLECTION));
-
-    if (snapshot.empty) {
-      return [...MOCK_RANKING].sort((a, b) => a.rank - b.rank);
-    }
 
     return snapshot.docs
       .map((doc) => toRankingEntry(doc.id, doc.data() as StartupRegistration))
@@ -98,5 +73,5 @@ const firebaseService: StartupService = {
 };
 
 export function getStartupService(): StartupService {
-  return isFirebaseConfigured() ? firebaseService : mockService;
+  return firebaseService;
 }
