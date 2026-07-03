@@ -1,17 +1,14 @@
 "use client";
-
 import { FormField, inputClassName } from "@/components/ui/FormField";
 import type { StartupRegistration } from "@/lib/types/startup";
-
 interface StepProps {
   data: StartupRegistration;
   onChange: (patch: Partial<StartupRegistration>) => void;
 }
-
 export function Step3BusinessModel({ data, onChange }: StepProps) {
   return (
     <div className="grid gap-5 sm:grid-cols-2">
-      <FormField label="Segmento" htmlFor="segment" required>
+      <FormField label="Segmento" htmlFor="segment">
         <input
           id="segment"
           className={inputClassName}
@@ -19,7 +16,7 @@ export function Step3BusinessModel({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ segment: e.target.value })}
         />
       </FormField>
-      <FormField label="Subsegmento" htmlFor="subsegment" required>
+      <FormField label="Subsegmento" htmlFor="subsegment">
         <input
           id="subsegment"
           className={inputClassName}
@@ -27,7 +24,7 @@ export function Step3BusinessModel({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ subsegment: e.target.value })}
         />
       </FormField>
-      <FormField label="B2B" htmlFor="b2b" required>
+      <FormField label="B2B" htmlFor="b2b">
         <input
           id="b2b"
           className={inputClassName}
@@ -35,7 +32,7 @@ export function Step3BusinessModel({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ b2b: e.target.value })}
         />
       </FormField>
-      <FormField label="B2C" htmlFor="b2c" required>
+      <FormField label="B2C" htmlFor="b2c">
         <input
           id="b2c"
           className={inputClassName}
@@ -43,7 +40,7 @@ export function Step3BusinessModel({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ b2c: e.target.value })}
         />
       </FormField>
-      <FormField label="B2B2C" htmlFor="b2b2c" required>
+      <FormField label="B2B2C" htmlFor="b2b2c">
         <input
           id="b2b2c"
           className={inputClassName}
@@ -51,7 +48,7 @@ export function Step3BusinessModel({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ b2b2c: e.target.value })}
         />
       </FormField>
-      <FormField label="SaaS" htmlFor="saas" required>
+      <FormField label="SaaS" htmlFor="saas">
         <input
           id="saas"
           className={inputClassName}
@@ -59,7 +56,7 @@ export function Step3BusinessModel({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ saas: e.target.value })}
         />
       </FormField>
-      <FormField label="Marketplace" htmlFor="marketplace" required>
+      <FormField label="Marketplace" htmlFor="marketplace">
         <input
           id="marketplace"
           className={inputClassName}
@@ -67,7 +64,7 @@ export function Step3BusinessModel({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ marketplace: e.target.value })}
         />
       </FormField>
-      <FormField label="Franquia" htmlFor="franchise" required>
+      <FormField label="Franquia" htmlFor="franchise">
         <input
           id="franchise"
           className={inputClassName}
@@ -75,7 +72,7 @@ export function Step3BusinessModel({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ franchise: e.target.value })}
         />
       </FormField>
-      <FormField label="Assinatura" htmlFor="subscription" required>
+      <FormField label="Assinatura" htmlFor="subscription">
         <input
           id="subscription"
           className={inputClassName}
@@ -83,7 +80,7 @@ export function Step3BusinessModel({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ subscription: e.target.value })}
         />
       </FormField>
-      <FormField label="E-commerce" htmlFor="ecommerce" required>
+      <FormField label="E-commerce" htmlFor="ecommerce">
         <input
           id="ecommerce"
           className={inputClassName}

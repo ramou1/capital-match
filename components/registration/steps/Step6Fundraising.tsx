@@ -1,5 +1,4 @@
 "use client";
-
 import {
   FormField,
   inputClassName,
@@ -7,16 +6,14 @@ import {
   textareaClassName,
 } from "@/components/ui/FormField";
 import type { StartupRegistration } from "@/lib/types/startup";
-
 interface StepProps {
   data: StartupRegistration;
   onChange: (patch: Partial<StartupRegistration>) => void;
 }
-
 export function Step6Fundraising({ data, onChange }: StepProps) {
   return (
     <div className="flex flex-col gap-5">
-      <FormField label="Está captando?" htmlFor="isRaising" required>
+      <FormField label="Está captando?" htmlFor="isRaising">
         <select
           id="isRaising"
           className={selectClassName}
@@ -30,8 +27,7 @@ export function Step6Fundraising({ data, onChange }: StepProps) {
           <option value="no">Não</option>
         </select>
       </FormField>
-
-      <FormField label="Objetivo da rodada" htmlFor="roundObjective" required>
+      <FormField label="Objetivo da rodada" htmlFor="roundObjective">
         <input
           id="roundObjective"
           className={inputClassName}
@@ -39,9 +35,8 @@ export function Step6Fundraising({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ roundObjective: e.target.value })}
         />
       </FormField>
-
       <div className="grid gap-5 sm:grid-cols-2">
-        <FormField label="Pré-seed" htmlFor="preSeed" required>
+        <FormField label="Pré-seed" htmlFor="preSeed">
           <input
             id="preSeed"
             className={inputClassName}
@@ -49,7 +44,7 @@ export function Step6Fundraising({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ preSeed: e.target.value })}
           />
         </FormField>
-        <FormField label="Seed" htmlFor="seed" required>
+        <FormField label="Seed" htmlFor="seed">
           <input
             id="seed"
             className={inputClassName}
@@ -57,7 +52,7 @@ export function Step6Fundraising({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ seed: e.target.value })}
           />
         </FormField>
-        <FormField label="Série A" htmlFor="seriesA" required>
+        <FormField label="Série A" htmlFor="seriesA">
           <input
             id="seriesA"
             className={inputClassName}
@@ -65,7 +60,7 @@ export function Step6Fundraising({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ seriesA: e.target.value })}
           />
         </FormField>
-        <FormField label="Série B" htmlFor="seriesB" required>
+        <FormField label="Série B" htmlFor="seriesB">
           <input
             id="seriesB"
             className={inputClassName}
@@ -73,7 +68,7 @@ export function Step6Fundraising({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ seriesB: e.target.value })}
           />
         </FormField>
-        <FormField label="Growth" htmlFor="growth" required>
+        <FormField label="Growth" htmlFor="growth">
           <input
             id="growth"
             className={inputClassName}
@@ -81,7 +76,7 @@ export function Step6Fundraising({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ growth: e.target.value })}
           />
         </FormField>
-        <FormField label="Venture Debt" htmlFor="ventureDebt" required>
+        <FormField label="Venture Debt" htmlFor="ventureDebt">
           <input
             id="ventureDebt"
             className={inputClassName}
@@ -89,7 +84,7 @@ export function Step6Fundraising({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ ventureDebt: e.target.value })}
           />
         </FormField>
-        <FormField label="Valor procurado" htmlFor="amountSought" required>
+        <FormField label="Valor procurado" htmlFor="amountSought">
           <input
             id="amountSought"
             type="number"
@@ -102,7 +97,6 @@ export function Step6Fundraising({ data, onChange }: StepProps) {
         <FormField
           label="Participação oferecida (%)"
           htmlFor="equityOffered"
-          required
         >
           <input
             id="equityOffered"
@@ -113,7 +107,7 @@ export function Step6Fundraising({ data, onChange }: StepProps) {
             placeholder="15"
           />
         </FormField>
-        <FormField label="Valuation atual" htmlFor="currentValuation" required>
+        <FormField label="Valuation atual" htmlFor="currentValuation">
           <input
             id="currentValuation"
             type="number"
@@ -125,7 +119,6 @@ export function Step6Fundraising({ data, onChange }: StepProps) {
         <FormField
           label="Valuation projetado"
           htmlFor="projectedValuation"
-          required
         >
           <input
             id="projectedValuation"
@@ -135,7 +128,7 @@ export function Step6Fundraising({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ projectedValuation: e.target.value })}
           />
         </FormField>
-        <FormField label="Prazo da rodada" htmlFor="roundDeadline" required>
+        <FormField label="Prazo da rodada" htmlFor="roundDeadline">
           <input
             id="roundDeadline"
             className={inputClassName}
@@ -145,8 +138,7 @@ export function Step6Fundraising({ data, onChange }: StepProps) {
           />
         </FormField>
       </div>
-
-      <FormField label="Informações" htmlFor="fundraisingInfo" required>
+      <FormField label="Informações" htmlFor="fundraisingInfo">
         <textarea
           id="fundraisingInfo"
           className={textareaClassName}

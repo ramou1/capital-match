@@ -1,17 +1,14 @@
 "use client";
-
 import { FormField, inputClassName, textareaClassName } from "@/components/ui/FormField";
 import type { StartupRegistration } from "@/lib/types/startup";
-
 interface StepProps {
   data: StartupRegistration;
   onChange: (patch: Partial<StartupRegistration>) => void;
 }
-
 export function Step5InvestorMetrics({ data, onChange }: StepProps) {
   return (
     <div className="flex flex-col gap-5">
-      <FormField label="Tração" htmlFor="traction" required>
+      <FormField label="Tração" htmlFor="traction">
         <textarea
           id="traction"
           className={textareaClassName}
@@ -21,7 +18,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
         />
       </FormField>
       <div className="grid gap-5 sm:grid-cols-2">
-        <FormField label="Clientes ativos" htmlFor="activeClients" required>
+        <FormField label="Clientes ativos" htmlFor="activeClients">
           <input
             id="activeClients"
             className={inputClassName}
@@ -29,7 +26,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ activeClients: e.target.value })}
           />
         </FormField>
-        <FormField label="Usuários ativos" htmlFor="activeUsers" required>
+        <FormField label="Usuários ativos" htmlFor="activeUsers">
           <input
             id="activeUsers"
             className={inputClassName}
@@ -37,7 +34,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ activeUsers: e.target.value })}
           />
         </FormField>
-        <FormField label="Crescimento mensal (%)" htmlFor="monthlyGrowth" required>
+        <FormField label="Crescimento mensal (%)" htmlFor="monthlyGrowth">
           <input
             id="monthlyGrowth"
             type="number"
@@ -47,7 +44,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             placeholder="15"
           />
         </FormField>
-        <FormField label="MRR" htmlFor="mrr" required>
+        <FormField label="MRR" htmlFor="mrr">
           <input
             id="mrr"
             className={inputClassName}
@@ -55,7 +52,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ mrr: e.target.value })}
           />
         </FormField>
-        <FormField label="ARR" htmlFor="arr" required>
+        <FormField label="ARR" htmlFor="arr">
           <input
             id="arr"
             className={inputClassName}
@@ -63,7 +60,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ arr: e.target.value })}
           />
         </FormField>
-        <FormField label="EBITDA" htmlFor="ebitda" required>
+        <FormField label="EBITDA" htmlFor="ebitda">
           <input
             id="ebitda"
             className={inputClassName}
@@ -71,7 +68,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ ebitda: e.target.value })}
           />
         </FormField>
-        <FormField label="CAC" htmlFor="cac" required>
+        <FormField label="CAC" htmlFor="cac">
           <input
             id="cac"
             className={inputClassName}
@@ -79,7 +76,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ cac: e.target.value })}
           />
         </FormField>
-        <FormField label="LTV" htmlFor="ltv" required>
+        <FormField label="LTV" htmlFor="ltv">
           <input
             id="ltv"
             className={inputClassName}
@@ -87,7 +84,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ ltv: e.target.value })}
           />
         </FormField>
-        <FormField label="Churn" htmlFor="churn" required>
+        <FormField label="Churn" htmlFor="churn">
           <input
             id="churn"
             className={inputClassName}
@@ -95,7 +92,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ churn: e.target.value })}
           />
         </FormField>
-        <FormField label="Mercado" htmlFor="market" required>
+        <FormField label="Mercado" htmlFor="market">
           <input
             id="market"
             className={inputClassName}
@@ -103,7 +100,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ market: e.target.value })}
           />
         </FormField>
-        <FormField label="TAM" htmlFor="tam" required>
+        <FormField label="TAM" htmlFor="tam">
           <input
             id="tam"
             className={inputClassName}
@@ -111,7 +108,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ tam: e.target.value })}
           />
         </FormField>
-        <FormField label="SAM" htmlFor="sam" required>
+        <FormField label="SAM" htmlFor="sam">
           <input
             id="sam"
             className={inputClassName}
@@ -119,7 +116,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ sam: e.target.value })}
           />
         </FormField>
-        <FormField label="SOM" htmlFor="som" required>
+        <FormField label="SOM" htmlFor="som">
           <input
             id="som"
             className={inputClassName}
@@ -127,7 +124,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ som: e.target.value })}
           />
         </FormField>
-        <FormField label="Expansão" htmlFor="expansion" required>
+        <FormField label="Expansão" htmlFor="expansion">
           <input
             id="expansion"
             className={inputClassName}
@@ -135,7 +132,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ expansion: e.target.value })}
           />
         </FormField>
-        <FormField label="Estados atendidos" htmlFor="statesServed" required>
+        <FormField label="Estados atendidos" htmlFor="statesServed">
           <input
             id="statesServed"
             className={inputClassName}
@@ -143,7 +140,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ statesServed: e.target.value })}
           />
         </FormField>
-        <FormField label="Países atendidos" htmlFor="countriesServed" required>
+        <FormField label="Países atendidos" htmlFor="countriesServed">
           <input
             id="countriesServed"
             className={inputClassName}
@@ -151,7 +148,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ countriesServed: e.target.value })}
           />
         </FormField>
-        <FormField label="Franquias" htmlFor="franchises" required>
+        <FormField label="Franquias" htmlFor="franchises">
           <input
             id="franchises"
             className={inputClassName}
@@ -159,7 +156,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ franchises: e.target.value })}
           />
         </FormField>
-        <FormField label="Filiais" htmlFor="branches" required>
+        <FormField label="Filiais" htmlFor="branches">
           <input
             id="branches"
             className={inputClassName}
@@ -167,7 +164,7 @@ export function Step5InvestorMetrics({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ branches: e.target.value })}
           />
         </FormField>
-        <FormField label="Projetos" htmlFor="projects" required>
+        <FormField label="Projetos" htmlFor="projects">
           <input
             id="projects"
             className={inputClassName}

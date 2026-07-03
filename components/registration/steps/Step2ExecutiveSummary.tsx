@@ -1,17 +1,14 @@
 "use client";
-
 import { FormField, inputClassName, textareaClassName } from "@/components/ui/FormField";
 import type { StartupRegistration } from "@/lib/types/startup";
-
 interface StepProps {
   data: StartupRegistration;
   onChange: (patch: Partial<StartupRegistration>) => void;
 }
-
 export function Step2ExecutiveSummary({ data, onChange }: StepProps) {
   return (
     <div className="flex flex-col gap-5">
-      <FormField label="Slogan da empresa" htmlFor="slogan" required>
+      <FormField label="Slogan da empresa" htmlFor="slogan">
         <input
           id="slogan"
           className={inputClassName}
@@ -19,7 +16,7 @@ export function Step2ExecutiveSummary({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ slogan: e.target.value })}
         />
       </FormField>
-      <FormField label="Problema que resolve" htmlFor="problem" required>
+      <FormField label="Problema que resolve" htmlFor="problem">
         <textarea
           id="problem"
           className={textareaClassName}
@@ -28,7 +25,7 @@ export function Step2ExecutiveSummary({ data, onChange }: StepProps) {
           rows={3}
         />
       </FormField>
-      <FormField label="Solução oferecida" htmlFor="solution" required>
+      <FormField label="Solução oferecida" htmlFor="solution">
         <textarea
           id="solution"
           className={textareaClassName}
@@ -40,7 +37,6 @@ export function Step2ExecutiveSummary({ data, onChange }: StepProps) {
       <FormField
         label="Diferenciais competitivos"
         htmlFor="competitiveAdvantages"
-        required
       >
         <textarea
           id="competitiveAdvantages"
@@ -50,7 +46,7 @@ export function Step2ExecutiveSummary({ data, onChange }: StepProps) {
           rows={3}
         />
       </FormField>
-      <FormField label="Mercado alvo" htmlFor="targetMarket" required>
+      <FormField label="Mercado alvo" htmlFor="targetMarket">
         <textarea
           id="targetMarket"
           className={textareaClassName}
@@ -59,7 +55,7 @@ export function Step2ExecutiveSummary({ data, onChange }: StepProps) {
           rows={3}
         />
       </FormField>
-      <FormField label="Estágio da empresa" htmlFor="companyStage" required>
+      <FormField label="Estágio da empresa" htmlFor="companyStage">
         <input
           id="companyStage"
           className={inputClassName}

@@ -1,19 +1,15 @@
 "use client";
-
 import { FormField, inputClassName } from "@/components/ui/FormField";
 import { MANUAL_RANKING_CRITERIA } from "@/lib/labels";
 import type { RankingCriteria, StartupRegistration } from "@/lib/types/startup";
-
 interface StepProps {
   data: StartupRegistration;
   onChange: (patch: Partial<StartupRegistration>) => void;
 }
-
 export function Step8RankingScore({ data, onChange }: StepProps) {
   const updateRanking = (patch: Partial<RankingCriteria>) => {
     onChange({ ranking: { ...data.ranking, ...patch } });
   };
-
   return (
     <div className="flex flex-col gap-6">
       <p className="text-sm text-navy-400">
@@ -22,12 +18,10 @@ export function Step8RankingScore({ data, onChange }: StepProps) {
         critérios serão avaliados pela equipe da plataforma após o envio do
         cadastro.
       </p>
-
       <div className="grid gap-5 sm:grid-cols-2">
         <FormField
           label="Receita Anual"
           htmlFor="annualRevenue"
-          required
           hint="Valor em reais"
         >
           <input
@@ -42,7 +36,6 @@ export function Step8RankingScore({ data, onChange }: StepProps) {
         <FormField
           label="Valor da Receita (%)"
           htmlFor="revenueWeight"
-          required
         >
           <input
             id="revenueWeight"
@@ -56,7 +49,6 @@ export function Step8RankingScore({ data, onChange }: StepProps) {
         <FormField
           label="Crescimento por Ano (%)"
           htmlFor="yearlyGrowth"
-          required
         >
           <input
             id="yearlyGrowth"
@@ -70,7 +62,6 @@ export function Step8RankingScore({ data, onChange }: StepProps) {
         <FormField
           label="Mercado / Marketshare (%)"
           htmlFor="marketShare"
-          required
         >
           <input
             id="marketShare"
@@ -82,7 +73,6 @@ export function Step8RankingScore({ data, onChange }: StepProps) {
           />
         </FormField>
       </div>
-
       <div className="rounded-lg border border-navy-700 bg-navy-800/30 p-4">
         <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-gold">
           Critérios avaliados pela equipe

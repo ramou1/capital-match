@@ -54,7 +54,7 @@ function FounderBlock({
         )}
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
-        <FormField label="Nome" htmlFor={`${prefix}-name`} required>
+        <FormField label="Nome" htmlFor={`${prefix}-name`}>
           <input
             id={`${prefix}-name`}
             className={inputClassName}
@@ -62,7 +62,7 @@ function FounderBlock({
             onChange={(e) => onUpdate({ name: e.target.value })}
           />
         </FormField>
-        <FormField label="Cargo" htmlFor={`${prefix}-role`} required>
+        <FormField label="Cargo" htmlFor={`${prefix}-role`}>
           <input
             id={`${prefix}-role`}
             className={inputClassName}
@@ -70,7 +70,7 @@ function FounderBlock({
             onChange={(e) => onUpdate({ role: e.target.value })}
           />
         </FormField>
-        <FormField label="LinkedIn" htmlFor={`${prefix}-linkedin`} required>
+        <FormField label="LinkedIn" htmlFor={`${prefix}-linkedin`}>
           <input
             id={`${prefix}-linkedin`}
             className={inputClassName}
@@ -79,7 +79,7 @@ function FounderBlock({
             placeholder="https://linkedin.com/in/..."
           />
         </FormField>
-        <FormField label="Foto" htmlFor={`${prefix}-photo`} required hint="Anexo">
+        <FormField label="Foto" htmlFor={`${prefix}-photo`} hint="Anexo">
           <input
             id={`${prefix}-photo`}
             type="file"
@@ -94,7 +94,7 @@ function FounderBlock({
           )}
         </FormField>
         <div className="sm:col-span-2">
-          <FormField label="Experiência" htmlFor={`${prefix}-experience`} required>
+          <FormField label="Experiência" htmlFor={`${prefix}-experience`}>
             <textarea
               id={`${prefix}-experience`}
               className={textareaClassName}
@@ -159,7 +159,7 @@ export function Step7TeamGovernance({ data, onChange }: StepProps) {
         </button>
       )}
 
-      <FormField label="Conselho" htmlFor="board" required>
+      <FormField label="Conselho" htmlFor="board">
         <input
           id="board"
           className={inputClassName}
@@ -167,7 +167,7 @@ export function Step7TeamGovernance({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ board: e.target.value })}
         />
       </FormField>
-      <FormField label="Conselheiros" htmlFor="advisors" required>
+      <FormField label="Conselheiros" htmlFor="advisors">
         <textarea
           id="advisors"
           className={textareaClassName}
@@ -176,7 +176,7 @@ export function Step7TeamGovernance({ data, onChange }: StepProps) {
           rows={3}
         />
       </FormField>
-      <FormField label="Mentores" htmlFor="mentors" required>
+      <FormField label="Mentores" htmlFor="mentors">
         <textarea
           id="mentors"
           className={textareaClassName}
@@ -188,7 +188,6 @@ export function Step7TeamGovernance({ data, onChange }: StepProps) {
       <FormField
         label="Investidores atuais"
         htmlFor="currentInvestors"
-        required
       >
         <textarea
           id="currentInvestors"
@@ -201,7 +200,7 @@ export function Step7TeamGovernance({ data, onChange }: StepProps) {
 
       <fieldset>
         <legend className="mb-3 text-sm font-medium text-gold-100">
-          Governança <span className="text-gold">*</span>
+          Governança
         </legend>
         <div className="flex flex-wrap gap-4">
           {(Object.entries(GOVERNANCE_LABELS) as [GovernanceOption, string][]).map(

@@ -1,5 +1,4 @@
 "use client";
-
 import {
   FormField,
   fileClassName,
@@ -7,17 +6,15 @@ import {
   textareaClassName,
 } from "@/components/ui/FormField";
 import type { StartupRegistration } from "@/lib/types/startup";
-
 interface StepProps {
   data: StartupRegistration;
   onChange: (patch: Partial<StartupRegistration>) => void;
 }
-
 export function Step4ProductService({ data, onChange }: StepProps) {
   return (
     <div className="flex flex-col gap-5">
       <div className="grid gap-5 sm:grid-cols-2">
-        <FormField label="Produto" htmlFor="productType" required>
+        <FormField label="Produto" htmlFor="productType">
           <input
             id="productType"
             className={inputClassName}
@@ -25,7 +22,7 @@ export function Step4ProductService({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ productType: e.target.value })}
           />
         </FormField>
-        <FormField label="Nome" htmlFor="productName" required>
+        <FormField label="Nome" htmlFor="productName">
           <input
             id="productName"
             className={inputClassName}
@@ -33,7 +30,7 @@ export function Step4ProductService({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ productName: e.target.value })}
           />
         </FormField>
-        <FormField label="Categoria" htmlFor="productCategory" required>
+        <FormField label="Categoria" htmlFor="productCategory">
           <input
             id="productCategory"
             className={inputClassName}
@@ -41,7 +38,7 @@ export function Step4ProductService({ data, onChange }: StepProps) {
             onChange={(e) => onChange({ productCategory: e.target.value })}
           />
         </FormField>
-        <FormField label="Status" htmlFor="productStatus" required>
+        <FormField label="Status" htmlFor="productStatus">
           <input
             id="productStatus"
             className={inputClassName}
@@ -51,7 +48,7 @@ export function Step4ProductService({ data, onChange }: StepProps) {
           />
         </FormField>
       </div>
-      <FormField label="Descrição" htmlFor="productDescription" required>
+      <FormField label="Descrição" htmlFor="productDescription">
         <textarea
           id="productDescription"
           className={textareaClassName}
@@ -60,7 +57,7 @@ export function Step4ProductService({ data, onChange }: StepProps) {
           rows={4}
         />
       </FormField>
-      <FormField label="Fotos" htmlFor="productPhotos" required hint="Anexo">
+      <FormField label="Fotos" htmlFor="productPhotos" hint="Anexo">
         <input
           id="productPhotos"
           type="file"

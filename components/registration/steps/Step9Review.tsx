@@ -1,12 +1,9 @@
 "use client";
-
 import { BUSINESS_AREA_LABELS, GOVERNANCE_LABELS } from "@/lib/labels";
 import type { StartupRegistration } from "@/lib/types/startup";
-
 interface StepProps {
   data: StartupRegistration;
 }
-
 function ReviewBlock({
   title,
   children,
@@ -23,7 +20,6 @@ function ReviewBlock({
     </div>
   );
 }
-
 function ReviewItem({ label, value }: { label: string; value: string }) {
   if (!value?.trim()) return null;
   return (
@@ -33,24 +29,20 @@ function ReviewItem({ label, value }: { label: string; value: string }) {
     </div>
   );
 }
-
 export function Step9Review({ data }: StepProps) {
   const foundersSummary = data.founders
     .filter((f) => f.name.trim())
     .map((f) => `${f.name} — ${f.role}`)
     .join("\n");
-
   const governanceSummary = data.governance
     .map((g) => GOVERNANCE_LABELS[g])
     .join(", ");
-
   return (
     <div className="flex flex-col gap-4">
       <p className="text-sm text-navy-400">
         Revise as informações antes de publicar. Após o envio, sua startup
         será analisada e poderá entrar no ranking com o Capital Match Score.
       </p>
-
       <ReviewBlock title="1. Dados Básicos">
         <ReviewItem label="Razão Social" value={data.legalName} />
         <ReviewItem label="Nome Fantasia" value={data.tradeName} />
@@ -67,7 +59,6 @@ export function Step9Review({ data }: StepProps) {
         <ReviewItem label="Site" value={data.website} />
         <ReviewItem label="Redes" value={data.socialMedia} />
       </ReviewBlock>
-
       <ReviewBlock title="2. Resumo Executivo">
         <ReviewItem label="Slogan" value={data.slogan} />
         <ReviewItem label="Problema" value={data.problem} />
@@ -76,7 +67,6 @@ export function Step9Review({ data }: StepProps) {
         <ReviewItem label="Mercado alvo" value={data.targetMarket} />
         <ReviewItem label="Estágio" value={data.companyStage} />
       </ReviewBlock>
-
       <ReviewBlock title="3. Modelo de Negócio">
         <ReviewItem label="Segmento" value={data.segment} />
         <ReviewItem label="Subsegmento" value={data.subsegment} />
@@ -84,14 +74,12 @@ export function Step9Review({ data }: StepProps) {
         <ReviewItem label="SaaS" value={data.saas} />
         <ReviewItem label="Marketplace" value={data.marketplace} />
       </ReviewBlock>
-
       <ReviewBlock title="4. Produto ou Serviço">
         <ReviewItem label="Produto" value={data.productName} />
         <ReviewItem label="Categoria" value={data.productCategory} />
         <ReviewItem label="Descrição" value={data.productDescription} />
         <ReviewItem label="Status" value={data.productStatus} />
       </ReviewBlock>
-
       <ReviewBlock title="5. Indicadores">
         <ReviewItem label="Tração" value={data.traction} />
         <ReviewItem label="MRR" value={data.mrr} />
@@ -99,7 +87,6 @@ export function Step9Review({ data }: StepProps) {
         <ReviewItem label="Crescimento mensal" value={`${data.monthlyGrowth}%`} />
         <ReviewItem label="TAM/SAM/SOM" value={`${data.tam} / ${data.sam} / ${data.som}`} />
       </ReviewBlock>
-
       <ReviewBlock title="6. Captação">
         <ReviewItem
           label="Captando"
@@ -110,7 +97,6 @@ export function Step9Review({ data }: StepProps) {
         <ReviewItem label="Valuation atual" value={data.currentValuation} />
         <ReviewItem label="Participação" value={`${data.equityOffered}%`} />
       </ReviewBlock>
-
       <ReviewBlock title="7. Time e Governança">
         <ReviewItem label="Fundadores" value={foundersSummary} />
         <ReviewItem label="Conselho" value={data.board} />
@@ -118,7 +104,6 @@ export function Step9Review({ data }: StepProps) {
         <ReviewItem label="Investidores" value={data.currentInvestors} />
         <ReviewItem label="Governança" value={governanceSummary} />
       </ReviewBlock>
-
       <ReviewBlock title="Capital Match Score">
         <ReviewItem label="Receita anual" value={data.ranking.annualRevenue} />
         <ReviewItem label="Valor da receita" value={`${data.ranking.revenueWeight}%`} />

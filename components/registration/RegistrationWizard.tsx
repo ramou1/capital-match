@@ -19,70 +19,6 @@ import { Step9Review } from "./steps/Step9Review";
 
 const TOTAL_STEPS = REGISTRATION_STEPS.length;
 
-function validateStep(step: number, data: StartupRegistration): string | null {
-  switch (step) {
-    case 1:
-      if (!data.legalName.trim()) return "Informe a razão social.";
-      if (!data.tradeName.trim()) return "Informe o nome fantasia.";
-      if (!data.cnpj.trim()) return "Informe o CNPJ.";
-      if (!data.country.trim() || !data.state.trim() || !data.city.trim())
-        return "Informe país, estado e cidade.";
-      if (!data.foundedYear.trim()) return "Informe o ano de fundação.";
-      return null;
-    case 2:
-      if (!data.slogan.trim()) return "Informe o slogan da empresa.";
-      if (!data.problem.trim() || !data.solution.trim())
-        return "Preencha problema e solução.";
-      if (!data.competitiveAdvantages.trim())
-        return "Informe os diferenciais competitivos.";
-      if (!data.targetMarket.trim()) return "Informe o mercado alvo.";
-      if (!data.companyStage.trim()) return "Informe o estágio da empresa.";
-      return null;
-    case 3:
-      if (!data.segment.trim() || !data.subsegment.trim())
-        return "Informe segmento e subsegmento.";
-      return null;
-    case 4:
-      if (!data.productName.trim() || !data.productDescription.trim())
-        return "Informe nome e descrição do produto.";
-      if (!data.productStatus.trim()) return "Informe o status do produto.";
-      return null;
-    case 5:
-      if (!data.traction.trim()) return "Informe a tração.";
-      if (!data.mrr.trim()) return "Informe o MRR.";
-      return null;
-    case 6:
-      if (!data.isRaising) return "Informe se está captando recursos.";
-      if (!data.roundObjective.trim())
-        return "Informe o objetivo da rodada.";
-      if (data.isRaising === "yes" && !data.amountSought.trim())
-        return "Informe o valor procurado.";
-      return null;
-    case 7: {
-      const hasFounder = data.founders.some((f) => f.name.trim() && f.role.trim());
-      if (!hasFounder) return "Informe ao menos um fundador com nome e cargo.";
-      if (data.governance.length === 0)
-        return "Selecione ao menos uma opção de governança.";
-      return null;
-    }
-    case 8: {
-      const { annualRevenue, revenueWeight, yearlyGrowth, marketShare } =
-        data.ranking;
-      if (
-        !annualRevenue.trim() ||
-        !revenueWeight.trim() ||
-        !yearlyGrowth.trim() ||
-        !marketShare.trim()
-      ) {
-        return "Preencha todos os critérios numéricos do Capital Match Score.";
-      }
-      return null;
-    }
-    default:
-      return null;
-  }
-}
-
 export function RegistrationWizard() {
   const [step, setStep] = useState(1);
   const [data, setData] = useState<StartupRegistration>(EMPTY_REGISTRATION);
@@ -96,11 +32,6 @@ export function RegistrationWizard() {
   }, []);
 
   const goNext = () => {
-    const err = validateStep(step, data);
-    if (err) {
-      setError(err);
-      return;
-    }
     setStep((s) => Math.min(s + 1, TOTAL_STEPS));
     setError(null);
   };

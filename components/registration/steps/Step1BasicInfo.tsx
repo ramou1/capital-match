@@ -1,5 +1,4 @@
 "use client";
-
 import {
   FormField,
   fileClassName,
@@ -8,16 +7,14 @@ import {
 } from "@/components/ui/FormField";
 import { BUSINESS_AREA_LABELS } from "@/lib/labels";
 import type { BusinessArea, StartupRegistration } from "@/lib/types/startup";
-
 interface StepProps {
   data: StartupRegistration;
   onChange: (patch: Partial<StartupRegistration>) => void;
 }
-
 export function Step1BasicInfo({ data, onChange }: StepProps) {
   return (
     <div className="grid gap-5 sm:grid-cols-2">
-      <FormField label="Razão Social" htmlFor="legalName" required>
+      <FormField label="Razão Social" htmlFor="legalName">
         <input
           id="legalName"
           className={inputClassName}
@@ -25,7 +22,7 @@ export function Step1BasicInfo({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ legalName: e.target.value })}
         />
       </FormField>
-      <FormField label="Nome Fantasia" htmlFor="tradeName" required>
+      <FormField label="Nome Fantasia" htmlFor="tradeName">
         <input
           id="tradeName"
           className={inputClassName}
@@ -33,7 +30,7 @@ export function Step1BasicInfo({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ tradeName: e.target.value })}
         />
       </FormField>
-      <FormField label="CNPJ" htmlFor="cnpj" required>
+      <FormField label="CNPJ" htmlFor="cnpj">
         <input
           id="cnpj"
           className={inputClassName}
@@ -42,7 +39,7 @@ export function Step1BasicInfo({ data, onChange }: StepProps) {
           placeholder="00.000.000/0000-00"
         />
       </FormField>
-      <FormField label="Área de Atuação" htmlFor="businessArea" required>
+      <FormField label="Área de Atuação" htmlFor="businessArea">
         <select
           id="businessArea"
           className={selectClassName}
@@ -58,7 +55,7 @@ export function Step1BasicInfo({ data, onChange }: StepProps) {
           ))}
         </select>
       </FormField>
-      <FormField label="País" htmlFor="country" required>
+      <FormField label="País" htmlFor="country">
         <input
           id="country"
           className={inputClassName}
@@ -66,7 +63,7 @@ export function Step1BasicInfo({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ country: e.target.value })}
         />
       </FormField>
-      <FormField label="Estado" htmlFor="state" required>
+      <FormField label="Estado" htmlFor="state">
         <input
           id="state"
           className={inputClassName}
@@ -74,7 +71,7 @@ export function Step1BasicInfo({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ state: e.target.value })}
         />
       </FormField>
-      <FormField label="Cidade" htmlFor="city" required>
+      <FormField label="Cidade" htmlFor="city">
         <input
           id="city"
           className={inputClassName}
@@ -82,7 +79,7 @@ export function Step1BasicInfo({ data, onChange }: StepProps) {
           onChange={(e) => onChange({ city: e.target.value })}
         />
       </FormField>
-      <FormField label="Ano de Fundação" htmlFor="foundedYear" required>
+      <FormField label="Ano de Fundação" htmlFor="foundedYear">
         <input
           id="foundedYear"
           type="number"
